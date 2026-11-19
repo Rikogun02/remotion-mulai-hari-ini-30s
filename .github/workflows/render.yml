@@ -1,0 +1,29 @@
+name: Render Remotion video
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/**'
+      - 'public/scenes/**'
+      - 'scripts/**'
+      - 'package.json'
+      - '.github/workflows/render.yml'
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install offline audio tools
+        run: sudo apt-get update && sudo apt-get install -y espeak ffmpeg
+      - run: npm install
+      - run: python3 scripts/generate-audio.py
+      - run: npm run typecheck
+      - run: npx remotion render src/index.ts MainVideo out/video.mp4 --codec=h264
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mulai-hari-ini-video
+          path: out/video.mp4
+          if-no-files-found: error
