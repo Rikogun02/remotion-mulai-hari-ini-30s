@@ -38,4 +38,4 @@ Buka tab **Actions → Render Remotion video → Run workflow**. Workflow memasa
 ## Verifikasi
 MP4 final yang disertakan di hasil chat diverifikasi: 30.000 detik, 1920×1080, 30 fps, H.264, audio AAC stereo 48 kHz. Subtitle dibakar ke video dan file SRT/ASS juga disertakan.
 
-Catatan: render final yang dikirim dibuat menggunakan FFmpeg karena runtime lokal tidak memiliki cache npm dan tidak dapat mengakses registry npm. Source Remotion disiapkan untuk render native di mesin atau GitHub Actions yang memiliki akses registry.
+Render final berhasil dibuat secara native dengan Remotion melalui GitHub Actions. TypeScript check dan langkah render Remotion pada workflow berhasil; MP4 final tersedia pada artifact workflow dan di hasil unduhan proyek.
